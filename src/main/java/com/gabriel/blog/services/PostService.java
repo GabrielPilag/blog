@@ -1,6 +1,7 @@
 package com.gabriel.blog.services;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -65,13 +66,9 @@ public class PostService {
 	
 	public List<PostView> getAllPosts() {
 		return postRepository.findAll().stream()
-										.sorted(this::comparePostByCreationDate)
+										.sorted(Comparator.comparing(Post::getCreationDate,Comparator.reverseOrder()))
 										.map(this::mapPostToPostView)
 										.collect(Collectors.toList());
-	}
-	
-	private Integer comparePostByCreationDate(Post post1, Post post2) {
-		return post2.getCreationDate().compareTo(post1.getCreationDate());
 	}
 	
 	private PostView mapPostToPostView(Post post) {
