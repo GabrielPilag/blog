@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.gabriel.blog.handlers.NotFoundException;
 import com.gabriel.blog.models.AppUser;
 import com.gabriel.blog.repository.AppUserRepository;
 
@@ -24,8 +25,7 @@ public class AppUserService implements UserDetailsService{
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Mejorar la excepcion que lanza
-		return appUserRepository.findByEmail(username).orElseThrow(()-> new IllegalStateException("username not found"));
+		return appUserRepository.findByEmail(username).orElseThrow(()-> new NotFoundException("username not found"));
 	}
 
 	@Transactional
@@ -35,10 +35,10 @@ public class AppUserService implements UserDetailsService{
 		if (userExists) {
 			throw new IllegalStateException("email already taken");
 		}
+		
 		String encodedPassword = bCryptPasswordEncoder.encode(appUser.getPassword());
 		appUser.setPassword(encodedPassword);
-		
-		appUserRepository.save(appUser);//guardo en mi base de datos mi usuario
+		appUserRepository.save(appUser);
 		
 		return "Registro correcto";
 	}

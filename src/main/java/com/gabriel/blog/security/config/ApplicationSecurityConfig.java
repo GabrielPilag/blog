@@ -20,7 +20,7 @@ import lombok.AllArgsConstructor;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)//anotacion para que se puedan utilizar las anotaciones para autenticaciones
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 @AllArgsConstructor
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
 	
@@ -34,7 +34,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter{
 		.csrf().disable()
 		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 		.and()
-		.addFilterAt(new JwtUsernameAndPasswordAuthenticationFilter("/auth/login",authenticationManager()),UsernamePasswordAuthenticationFilter.class)//Agrego filtros
+		.addFilterAt(new JwtUsernameAndPasswordAuthenticationFilter("/auth/login",authenticationManager()),UsernamePasswordAuthenticationFilter.class)
 		.addFilterAfter(new JwtTokenVerifier(), JwtUsernameAndPasswordAuthenticationFilter.class)
 		.authorizeRequests()
 		.antMatchers("/","index","/css/", "/js/*").permitAll()

@@ -10,6 +10,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,6 +24,8 @@ import lombok.ToString;
 @ToString
 @Entity
 @Table(name = "posts")
+@SQLDelete(sql = "UPDATE posts SET deleted = true WHERE id=?")
+@Where(clause = "deleted=false")
 public class Post {
 
 	@Id
@@ -31,6 +36,7 @@ public class Post {
 	private String imageUrl;
 	private String category;
 	private LocalDateTime creationDate;
+	private boolean deleted = Boolean.FALSE;
 	
 	@OneToOne
 	@JoinColumn(name="id_user")

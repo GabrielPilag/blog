@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gabriel.blog.models.Post;
 import com.gabriel.blog.models.PostRequest;
+import com.gabriel.blog.models.PostView;
 import com.gabriel.blog.services.PostService;
 
 import lombok.AllArgsConstructor;
@@ -31,23 +32,23 @@ public class PostController {
 	private final PostService postService;
 	
 	@GetMapping
-	public ResponseEntity<List<Post>> getAllPosts (){
-		return new ResponseEntity<List<Post>>(postService.getAllPosts(), HttpStatus.OK);
+	public ResponseEntity<List<PostView>> getAllPosts (){
+		return new ResponseEntity<List<PostView>>(postService.getAllPosts(), HttpStatus.OK);
 	}
 	
 	@GetMapping(params = "title")
-	public ResponseEntity<List<Post>> getAllPostsFilterByTitle(@RequestParam(name = "title") String title){
-		return new ResponseEntity<List<Post>>(postService.getAllPostsFilterByTitle(title), HttpStatus.OK);
+	public ResponseEntity<List<PostView>> getAllPostsFilterByTitle(@RequestParam(name = "title") String title){
+		return new ResponseEntity<List<PostView>>(postService.getAllPostsFilterByTitle(title), HttpStatus.OK);
 	}
 	
 	@GetMapping(params = "category")
-	public ResponseEntity<List<Post>> getAllPostsFilterByCategory(@RequestParam(name = "category") String category){
-		return new ResponseEntity<List<Post>>(postService.getAllPostsFilterByCategory(category), HttpStatus.OK);
+	public ResponseEntity<List<PostView>> getAllPostsFilterByCategory(@RequestParam(name = "category") String category){
+		return new ResponseEntity<List<PostView>>(postService.getAllPostsFilterByCategory(category), HttpStatus.OK);
 	}
 	
 	@GetMapping(params = {"title", "category"})
-	public ResponseEntity<List<Post>> getAllPostsFilterByTitleAndCategory(@RequestParam(name = "title") String title, @RequestParam(name = "category") String category){
-		return new ResponseEntity<List<Post>>(postService.getAllPostsFilterByTitleAndCategory(title, category), HttpStatus.OK);
+	public ResponseEntity<List<PostView>> getAllPostsFilterByTitleAndCategory(@RequestParam(name = "title") String title, @RequestParam(name = "category") String category){
+		return new ResponseEntity<List<PostView>>(postService.getAllPostsFilterByTitleAndCategory(title, category), HttpStatus.OK);
 	}
 	
 	@GetMapping(path = "{id}")

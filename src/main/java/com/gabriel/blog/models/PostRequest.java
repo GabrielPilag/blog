@@ -1,7 +1,5 @@
 package com.gabriel.blog.models;
 
-import java.time.LocalDateTime;
-
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 

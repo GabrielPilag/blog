@@ -31,10 +31,10 @@ public class JwtTokenVerifier extends OncePerRequestFilter{
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		
-		String authorizationHeader = request.getHeader("Authorization");//Obtengo el header que voy a querer manejar, en este caso contiene el token
+		String authorizationHeader = request.getHeader("Authorization");
 		
 		if ( Strings.isNullOrEmpty(authorizationHeader) || !authorizationHeader.startsWith("Bearer ")) {
-			filterChain.doFilter(request, response);//Se rechaza la autorización porque esta vacio o es nulo o no empieza con "Bearer "
+			filterChain.doFilter(request, response);
 			return;
 		}
 		

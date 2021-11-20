@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
 public class ApiErrorHandler {
+	
 
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
 	@ExceptionHandler(Exception.class)
@@ -62,5 +63,6 @@ public class ApiErrorHandler {
         ErrorMessage resp = new ErrorMessage(HttpStatus.BAD_REQUEST.value(),"bad request", LocalDateTime.now(), errors);
         return resp;
 	}
+	
 	
 }

@@ -43,17 +43,17 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends AbstractAuthenti
 			return authenticate;
 			
 		} catch (IOException e) {
-			//TODO Avisar de credenciales invalidas
 			throw new RuntimeException(e);
+			
 		}
 	}
 
-	@Override//Este metodo es invocado luego de que la autenticacion fue exitosa
+	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
-		//Dentro de este metodo vamos a crear un token y enviarlo al cliente
 
-		String key = "securesecuresecuresecuresecuresecuresecure";//Asegurarse que la palabra sea segura para generar la key
+
+		String key = "securesecuresecuresecuresecuresecuresecure";
 		String token = Jwts.builder()
 				.setSubject(authResult.getName())
 				.claim("authorities", authResult.getAuthorities())
@@ -63,6 +63,16 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends AbstractAuthenti
 				.compact();
 
 		response.addHeader("Authorization","Bearer " + token);
+	}
+
+	@Override
+	protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
+			AuthenticationException failed) throws IOException, ServletException {
+		response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); 
+		response.setContentType("application/json");
+		response.getWriter().write(failed.getMessage());
 	} 
+	
+	
 
 }
