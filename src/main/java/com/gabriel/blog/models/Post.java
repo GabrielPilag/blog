@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -34,13 +35,17 @@ public class Post {
 	private String title;
 	private String content;
 	private String imageUrl;
-	private String category;
+	//private String category;
 	private LocalDateTime creationDate;
 	private boolean deleted = Boolean.FALSE;
 	
 	@OneToOne
 	@JoinColumn(name="id_user")
 	private AppUser user;
+	
+	@ManyToOne
+	@JoinColumn(name="id_category")
+	private Category category;
 
 	
 }

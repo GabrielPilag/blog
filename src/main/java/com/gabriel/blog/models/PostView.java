@@ -19,4 +19,5 @@ public class PostView {
 	private String category;
 	private LocalDateTime creationDate;
 	
+	
 }

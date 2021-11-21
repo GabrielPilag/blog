@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.gabriel.blog.handlers.NotFoundException;
 import com.gabriel.blog.models.AppUser;
+import com.gabriel.blog.models.Category;
 import com.gabriel.blog.models.Post;
 import com.gabriel.blog.models.PostRequest;
 import com.gabriel.blog.models.PostView;
@@ -26,6 +27,7 @@ public class PostService {
 
 	private final PostRepository postRepository;
 	private final AppUserService appUserService;
+	private final CategoryService categoryService;
 	
 	public Post getPost(Long id) {
 		return postRepository.findById(id).orElseThrow(()->new NotFoundException("post does not exist"));
@@ -55,10 +57,11 @@ public class PostService {
 	public Post editPost(Long id, PostRequest post) {
 		Post postToEdit = postRepository.findById(id).orElseThrow(()->new NotFoundException("post does not exist"));
 		AppUser user = appUserService.findUserById(post.getIdUser()).orElseThrow(()->new NotFoundException("user does not exist"));
+		Category category = categoryService.findCategoryById(post.getIdCategory()).orElseThrow(()->new NotFoundException("category does not exist"));
 		postToEdit.setTitle(post.getTitle());
 		postToEdit.setContent(post.getContent());
 		postToEdit.setImageUrl(post.getImageUrl());
-		postToEdit.setCategory(post.getCategory());
+		postToEdit.setCategory(category);
 		postToEdit.setUser(user);
 		return postToEdit;
 	}
@@ -72,7 +75,11 @@ public class PostService {
 	}
 	
 	private PostView mapPostToPostView(Post post) {
-		return new ModelMapper().map(post, PostView.class);
+		
+		PostView postView = new ModelMapper().map(post, PostView.class);
+		postView.setCategory(post.getCategory().getName());
+		return postView;
+		
 	}
 
 	

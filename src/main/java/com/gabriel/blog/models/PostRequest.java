@@ -26,9 +26,9 @@ public class PostRequest {
 	@URL(message = "must be a valid URL")
 	private String imageUrl;
 	
-	@NotBlank(message = "cannot be blank")
-	private String category;
-	
 	@NotNull(message = "cannot be null")
 	private Long idUser;
+	
+	@NotNull(message = "cannot be null")
+	private Long idCategory;
 }
