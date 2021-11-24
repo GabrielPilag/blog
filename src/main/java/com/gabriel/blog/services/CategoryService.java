@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.gabriel.blog.models.Category;
+import com.gabriel.blog.entities.Category;
 import com.gabriel.blog.repository.CategoryRepository;
 
 import lombok.AllArgsConstructor;

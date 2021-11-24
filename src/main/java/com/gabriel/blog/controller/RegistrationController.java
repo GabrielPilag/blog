@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gabriel.blog.models.RegistrationRequest;
+import com.gabriel.blog.dto.RegistrationRequest;
 import com.gabriel.blog.services.RegistrationService;
 
 import lombok.AllArgsConstructor;

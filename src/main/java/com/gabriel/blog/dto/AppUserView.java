@@ -1,4 +1,4 @@
-package com.gabriel.blog.models;
+package com.gabriel.blog.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -2,8 +2,8 @@ package com.gabriel.blog.services;
 
 import org.springframework.stereotype.Service;
 
-import com.gabriel.blog.models.AppUser;
-import com.gabriel.blog.models.RegistrationRequest;
+import com.gabriel.blog.dto.RegistrationRequest;
+import com.gabriel.blog.entities.AppUser;
 
 import lombok.AllArgsConstructor;
 

@@ -1,4 +1,4 @@
-package com.gabriel.blog.models;
+package com.gabriel.blog.dto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

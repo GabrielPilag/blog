@@ -10,8 +10,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.gabriel.blog.entities.AppUser;
 import com.gabriel.blog.handlers.NotFoundException;
-import com.gabriel.blog.models.AppUser;
 import com.gabriel.blog.repository.AppUserRepository;
 
 import lombok.AllArgsConstructor;

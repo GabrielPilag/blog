@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.gabriel.blog.models.Post;
-import com.gabriel.blog.models.PostRequest;
-import com.gabriel.blog.models.PostView;
+import com.gabriel.blog.dto.PostRequest;
+import com.gabriel.blog.dto.PostView;
+import com.gabriel.blog.entities.Post;
 import com.gabriel.blog.services.PostService;
 
 import lombok.AllArgsConstructor;

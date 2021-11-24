@@ -10,12 +10,12 @@ import javax.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import com.gabriel.blog.dto.PostRequest;
+import com.gabriel.blog.dto.PostView;
+import com.gabriel.blog.entities.AppUser;
+import com.gabriel.blog.entities.Category;
+import com.gabriel.blog.entities.Post;
 import com.gabriel.blog.handlers.NotFoundException;
-import com.gabriel.blog.models.AppUser;
-import com.gabriel.blog.models.Category;
-import com.gabriel.blog.models.Post;
-import com.gabriel.blog.models.PostRequest;
-import com.gabriel.blog.models.PostView;
 import com.gabriel.blog.repository.PostRepository;
 
 import lombok.AllArgsConstructor;
